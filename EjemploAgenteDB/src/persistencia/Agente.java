@@ -15,7 +15,7 @@ public class Agente {
 	protected static Connection mBD;
 	// Identificador ODBC de la base de datos
 	private static String url = "jdbc:mysql://localhost:3307/practicabd?user=alumno&password=alumno";
-	// Driven para conectar con bases de datos MySQL
+	// Driver para conectar con bases de datos MySQL
 	private static String driver = "com.mysql.jdbc.Driver";
 
 	// Constructor
@@ -25,7 +25,7 @@ public class Agente {
 	}
 
 	// Implementacion del patron singleton
-	// Este patron de diseÒo permite implementar clases de las cuales
+	// Este patron de dise√±o permite implementar clases de las cuales
 	// solo existir una instancia
 	// http://es.wikipedia.org/wiki/Singleton
 	public static Agente getAgente() throws Exception {
@@ -78,7 +78,7 @@ public class Agente {
 	public Vector<Object> select(String SQL) throws SQLException, Exception {
 		/*
 		 * Metodo para realizar una busqueda o seleccion de informacion enla base de
-		 * datos El método select develve un vector de vectores, donde cada uno de los
+		 * datos El m≈Ωtodo select develve un vector de vectores, donde cada uno de los
 		 * vectores que contiene el vector principal representa los registros que se
 		 * recuperan de la base de datos.
 		 */
