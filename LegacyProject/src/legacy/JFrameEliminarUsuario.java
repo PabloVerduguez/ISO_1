@@ -79,9 +79,20 @@ public class JFrameEliminarUsuario extends JFrame {
 		btnAltaUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				boolean eliminado = false;
-				
-				//esto habrá que implementarlo como sea cuando se solicite desde Gerencia
-				
+				try {
+					Usuario u = new Usuario(textFieldLogin.getText(), textFieldPassword.getText());
+					if(u.delete() ==1)
+						eliminado = true;
+					
+					if(eliminado){
+						textPane.setText("Usuario eliminado correctamente");
+					} else {
+						textPane.setText("No se ha podido eliminar el usuario");
+					}
+					
+				} catch (Exception e) {
+					textPane.setText("No se ha podido eliminar el usuario. Tal vez no existe?");
+				}
 			}
 		});
 		btnAltaUsuario.setBounds(253, 76, 141, 29);
