@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Exceptions.ContraseñaInvalidaException;
+import Exceptions.UsuarioNoExisteException;
+
 import java.awt.FlowLayout;
 
 import javax.swing.JLabel;
@@ -18,6 +21,8 @@ import java.awt.Color;
 import javax.swing.JTextPane;
 
 import java.awt.event.ActionListener;
+import java.nio.file.attribute.UserPrincipalNotFoundException;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class JFrameEliminarUsuario extends JFrame {
@@ -83,15 +88,19 @@ public class JFrameEliminarUsuario extends JFrame {
 					Usuario u = new Usuario(textFieldLogin.getText(), textFieldPassword.getText());
 					if(u.delete() ==1)
 						eliminado = true;
-					
 					if(eliminado){
 						textPane.setText("Usuario eliminado correctamente");
-					} else {
+					}else {
 						textPane.setText("No se ha podido eliminar el usuario");
 					}
-					
+				} catch (UsuarioNoExisteException x) {
+					textPane.setText(x.getMessage());
+				} catch (ContraseñaInvalidaException c) {
+					textPane.setText(c.getMessage());
+				} catch (SQLException e) {
+					textPane.setText(e.getMessage());
 				} catch (Exception e) {
-					textPane.setText("No se ha podido eliminar el usuario. Tal vez no existe?");
+					textPane.setText(e.getMessage());
 				}
 			}
 		});
